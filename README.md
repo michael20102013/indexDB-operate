@@ -122,7 +122,7 @@ import indexDB_Operate from 'indexdb-operate';
 
         document.querySelector("#add").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.add(scheme1).then(v => {
                 console.log('add', v)
             }).catch(e => {
@@ -131,7 +131,7 @@ import indexDB_Operate from 'indexdb-operate';
         })
         document.querySelector("#get").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.read(idArr).then(v => {
                 console.log('get', v)
             });
@@ -139,7 +139,7 @@ import indexDB_Operate from 'indexdb-operate';
 
         document.querySelector("#getAll").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.readAll(storeNames).then(v => {
                 console.log('所有的数据', v)
             });
@@ -148,7 +148,7 @@ import indexDB_Operate from 'indexdb-operate';
 
         document.querySelector("#update").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.update(scheme1[0].storeName, {
                 id: 1,
                 name: 'wc',
@@ -161,7 +161,7 @@ import indexDB_Operate from 'indexdb-operate';
 
         document.querySelector("#delete").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.delete(scheme1[0].storeName, 1)
         })
         document.querySelector("#deleteDataBase").addEventListener('click', async function() {
@@ -174,7 +174,7 @@ import indexDB_Operate from 'indexdb-operate';
         })
         document.querySelector("#deleteObjectStore").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1).then(v => {
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22).then(v => {
                 console.log('数据库打开成功')
             }).catch(e => {
                 console.log('数据库打开失败', e)
@@ -188,7 +188,7 @@ import indexDB_Operate from 'indexdb-operate';
 
         document.querySelector("#findByIndex").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1).then(v => {
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22).then(v => {
                 console.log('数据库打开成功')
             }).catch(e => {
                 console.log('数据库打开失败', e)
@@ -215,4 +215,51 @@ import myFirstIndexDB from 'indexdb-operate';
 
 API:
 
+databaseName类型：一个字符串，表示数据的名称
+scheme类型：一个对象数组，每个对象包含仓库名称和数据，数据也是一个包含多条记录的数组；
+例子：
+
+storeName类型：一个字符串，表示一个仓库（表）的名称；
+
+version类型：一个整数，表示一个数据库的版本号；
+
+id类型：一个整数，表示主键；
+idArr类型： 一个由id组成的数组；
+
+storeNames类型：一个由storeName类型组成的数组；
+
+record类型：一个对象，表示一条记录，必须要有`id`字段；
+
+index类型：一个字符串，表示一个索引；
+```js
+let scheme1 = [{
+    storeName: 'person13', //表名
+    data: [{ //要存的数据
+        id: 1,
+        name: 'wcx1',
+        age: 29,
+        email: 'wcx@qq.com'
+    }]
+}, {
+    storeName: 'person14', //表名
+    data: [{ //要存的数据
+        id: 2,
+        name: 'wcx2',
+        age: 29,
+        email: 'wcx@qq.com'
+    }]
+}]
+
+```
+| api  | 用途|参数说明    |例子        |
+|------|----|------------|------------|
+| open | 打开或创建数据库|接受3个参数，其中第一个参数必选，是一个scheme类型，第二个参数必选，是一个databaseName类型，第三个参数必选，是一个version类型，最后返回一个promise对象|参考上面的列子|
+| add  | 用添加数据|接受一个scheme类型的参数    | 参考上面的列子|
+| read  |用于查询数据 |接受一个idArr类型的参数| 参考上面的列子|
+| readAll  |用于查询数据 |接受一个storeNames类型的参数| 参考上面的列子|
+| update  |用于更新数据 |接受2个参数，第一个参数是storeName类型，第二个参数是record类型表示要更新的记录   | 参考上面的列子|
+| delete  |用于删除数据 |接受2个参数，第一个参数是storeName类型，第二个参数是id类型| 参考上面的列子|
+| findByIndex  |用于查询数据 |接受3个参数，第一个参数是storeName类型，第二个参数是index类型, 第三个参数表示index的值| 参考上面的列子|
+| deleteDataBase  |用于删除数据库 |接受一个databaseName类型的参数| 参考上面的列子|
+| deleteObjectStore  |用于删除数据库某个仓库名 |接受1个storeName类型的参数| 参考上面的列子|
 

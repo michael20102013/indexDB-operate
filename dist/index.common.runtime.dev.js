@@ -1,21 +1,21 @@
 
 
 
-const databaseName = 'myFirstIndexDB';//字符串
+// const databaseName = 'myFirstIndexDB';//字符串
 
-const version = 22;//整数
+// const version = 22;//整数
 
 let db;//数据库
 
 let request;
 
-let eventsArr = [];//事件中心
+// let eventsArr = [];//事件中心
 
 function myFirstIndexDB() {
 
 
 }
-myFirstIndexDB.prototype.open = function (options) {
+myFirstIndexDB.prototype.open = function (options, databaseName = 'myFirstIndexDB', version = 22) {
     // let count = 0;
     return new Promise((resolve, reject) => {
         request = window.indexedDB.open(databaseName, version)
