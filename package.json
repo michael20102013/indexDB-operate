@@ -1,0 +1,20 @@
+{
+    "name": "indexdb-operate",
+    "version": "1.0.3",
+    "description": "a tool for indexDB",
+    "main": "index.js",
+    "scripts": {
+        "test": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/michael20102013/indexDB-operate.git"
+    },
+    "keywords": ["indexDB", "indexdb", "indexdb-operate"],
+    "author": "wangchengxiang",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/michael20102013/indexDB-operate/issues"
+    },
+    "homepage": "https://github.com/michael20102013/indexDB-operate#readme"
+}
