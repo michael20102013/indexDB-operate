@@ -1,6 +1,6 @@
 {
     "name": "indexdb-operate",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "a tool for indexDB",
     "main": "index.js",
     "scripts": {
