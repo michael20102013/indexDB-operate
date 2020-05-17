@@ -11,24 +11,7 @@
             min-width: 100px;
             height: 50px;
         }
-        
-        #div1 {
-            width: 400px;
-            height: 200px;
-            background-color: red;
-            margin-left: 200px;
-            position: relative;
-        }
-        
-        #div2 {
-            width: 300px;
-            height: 100px;
-            background-color: yellowgreen;
-            position: absolute;
-            left: 0;
-        }
     </style>
-    <!-- <script src="./src/indexDB.js"></script> -->
     <script src="../../dist/index.js"></script>
 </head>
 
@@ -95,7 +78,7 @@
 
         document.querySelector("#add").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.add(scheme1).then(v => {
                 console.log('add', v)
             }).catch(e => {
@@ -104,7 +87,7 @@
         })
         document.querySelector("#get").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.read(idArr).then(v => {
                 console.log('get', v)
             });
@@ -112,7 +95,7 @@
 
         document.querySelector("#getAll").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.readAll(storeNames).then(v => {
                 console.log('所有的数据', v)
             });
@@ -121,7 +104,7 @@
 
         document.querySelector("#update").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.update(scheme1[0].storeName, {
                 id: 1,
                 name: 'wc',
@@ -134,7 +117,7 @@
 
         document.querySelector("#delete").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1);
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22);
             await indexDB.delete(scheme1[0].storeName, 1)
         })
         document.querySelector("#deleteDataBase").addEventListener('click', async function() {
@@ -147,7 +130,7 @@
         })
         document.querySelector("#deleteObjectStore").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1).then(v => {
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22).then(v => {
                 console.log('数据库打开成功')
             }).catch(e => {
                 console.log('数据库打开失败', e)
@@ -161,7 +144,7 @@
 
         document.querySelector("#findByIndex").addEventListener('click', async function() {
             let indexDB = new myFirstIndexDB();
-            await indexDB.open(scheme1).then(v => {
+            await indexDB.open(scheme1, 'myFirstIndexDB', 22).then(v => {
                 console.log('数据库打开成功')
             }).catch(e => {
                 console.log('数据库打开失败', e)
